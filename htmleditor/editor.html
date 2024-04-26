@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script type="module">
+
+            (async () => {
+
+                let filepath = location.search?.substring(1)
+
+                const contentpre = document.getElementById("content")
+
+                const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
+                contentpre.innerText = filecontent
+
+            })()
+        </script>
+    </head>
+    <body>
+        <pre id="content"></pre>
+    </body>
+</html>

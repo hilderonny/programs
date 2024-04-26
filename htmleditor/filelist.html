@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script type="module">
+
+            (async () => {
+
+                let currentpath = location.search?.substring(1)
+
+                if (currentpath.length > 0) {
+                    currentpath += "/"
+                }
+
+                const currentpathdiv = document.getElementById("currentpath")
+                const filelistdiv = document.getElementById("filelist")
+
+                const pathparts = currentpath.split("/")
+                const pathlinkparts = []
+                const links = []
+                links.push('<a href="?">🏠</a>')
+                for (var i = 0; i < pathparts.length; i++) {
+                    var pathpart = pathparts[i]
+                    pathlinkparts.push(pathpart)
+                    var href = pathlinkparts.join("/")
+                    links.push('<a href="?' + href + '">' + pathpart + '</a>')
+                }
+                var alllinks = links.join("/")
+                currentpathdiv.innerHTML = alllinks
+
+                const filelist = await fetch("/api/filesystem/list/" + currentpath).then((response) => response.json())
+                
+                for (var file of filelist) {
+                    const link = document.createElement("a")
+                    link.classList.add(file.type)
+                    const fullpath = currentpath + file.name
+                    if (file.type === "folder") {
+                        link.innerText = "📁 " + file.name
+                        link.setAttribute("href", "?" + fullpath)
+                    } else {
+                        link.innerText = "🗎 " + file.name
+                        link.setAttribute("href", "editor.html?" + fullpath)
+                        link.setAttribute("target", "editor")
+                    }
+                    var div = document.createElement("div")
+                    div.appendChild(link)
+                    filelistdiv.appendChild(div)
+                }
+
+            })()
+        </script>
+    </head>
+    <body>
+
+        <div id="currentpath"></div>
+        <div id="filelist"></div>
+
+    </body>
+</html>
