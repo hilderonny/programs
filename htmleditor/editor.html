@@ -5,16 +5,20 @@
         <style>
             html, body { width: 100; height: 100%; padding: 0; margin: 0; }
             body { display: flex; flex-direction: column; }
-            #content { display: block; flex: 1; font-family: monospace; resize: none; }
+            #content { display: flex; flex: 1; }
+            #edit { display: block; flex: 1; font-family: monospace; resize: none; }
+            #preview { flex: 1; display: none; }
+            #preview.visible { display: block; }
         </style>
         <script type="module">
 
             let filepath
-            let contentelement
+            let editelement
+            let previewelement
 
             async function savefilebuttonclick() {
                 const formdata = new FormData()
-                formdata.append("data", new Blob([contentelement.value]));
+                formdata.append("data", new Blob([editelement.value]));
                 await fetch("/api/filesystem/" + filepath, { method: 'POST', body: formdata, cache: 'no-cache' })
                 alert("Die Datei wurde gespeichert")
             }
@@ -28,17 +32,34 @@
                 }
             }
 
+            function previewbuttonclick() {
+                document.getElementById("preview").classList.toggle("visible")
+            }
+
+            function editelementchanged() {
+                const blob = new Blob([editelement.value], { type: "text/html" })
+                const url = URL.createObjectURL(blob)
+                previewelement.src =url
+            }
+
             (async () => {
 
                 filepath = location.search?.substring(1)
 
-                contentelement = document.getElementById("content")
+                editelement = document.getElementById("edit")
+                editelement.addEventListener("input", editelementchanged)
 
-                const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
-                contentelement.textContent = filecontent
+                previewelement = document.getElementById("preview")
+
+                if (filepath) {
+                    const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
+                    editelement.textContent = filecontent
+                    editelementchanged()
+                }
 
                 document.getElementById("savebutton").addEventListener("click", savefilebuttonclick)
                 document.getElementById("deletebutton").addEventListener("click", deletefilebuttonclick)
+                document.getElementById("previewbutton").addEventListener("click", previewbuttonclick)
 
             })()
         </script>
@@ -47,7 +68,11 @@
         <div id="toolbar">
             <button id="savebutton">Speichern</button>
             <button id="deletebutton">Löschen</button>
+            <button id="previewbutton">Vorschau</button>
         </div>
-        <textarea id="content"></textarea>
+        <div id="content">
+            <textarea id="edit"></textarea>
+            <iframe id="preview"></iframe>
+        </div>
     </body>
 </html>
