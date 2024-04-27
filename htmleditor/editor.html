@@ -9,14 +9,36 @@
         </style>
         <script type="module">
 
+            let filepath
+            let contentelement
+
+            async function savefilebuttonclick() {
+                const formdata = new FormData()
+                formdata.append("data", new Blob([contentelement.value]));
+                await fetch("/api/filesystem/" + filepath, { method: 'POST', body: formdata, cache: 'no-cache' })
+                alert("Die Datei wurde gespeichert")
+            }
+
+            async function deletefilebuttonclick() {
+                const shouldbedeleted = confirm("Soll die Datei " + filepath + " gelöscht werden?")
+                if (shouldbedeleted) {
+                    await fetch("/api/filesystem/" + filepath, { method: 'DELETE' })
+                    parent.document.getElementById("filelist").contentWindow.location.reload()
+                    location.href = "about:blank"
+                }
+            }
+
             (async () => {
 
-                let filepath = location.search?.substring(1)
+                filepath = location.search?.substring(1)
 
-                const contentelement = document.getElementById("content")
+                contentelement = document.getElementById("content")
 
                 const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
                 contentelement.textContent = filecontent
+
+                document.getElementById("savebutton").addEventListener("click", savefilebuttonclick)
+                document.getElementById("deletebutton").addEventListener("click", deletefilebuttonclick)
 
             })()
         </script>
