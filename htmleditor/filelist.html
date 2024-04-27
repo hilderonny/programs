@@ -4,9 +4,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <script type="module">
 
+            let currentpath
+
+            async function newfolderbuttonclick() {
+                const foldername = prompt("Ordnername")
+                if (foldername) {
+                    await fetch("/api/filesystem/folder/" + currentpath + foldername, { method: 'POST' })
+                    location.reload()
+                }
+            }
+
+            async function newfilebuttonclick() {
+                const filename = prompt("Dateiname")
+                if (filename) {
+                    const fullpath = currentpath + filename
+                    await fetch("/api/filesystem/" + fullpath, { method: 'POST' })
+                    parent.document.getElementById("editor").src = "editor.html?" + fullpath
+                    location.reload()
+                }
+            }
+
+            async function deletefolderbuttonclick() {
+                const shouldbedeleted = confirm("Soll der Ordner " + currentpath + " gelöscht werden?")
+                if (shouldbedeleted) {
+                    await fetch("/api/filesystem/" + currentpath, { method: 'DELETE' })
+                    const parentfolder = currentpath.split("/").slice(0, -2).join("/")
+                    location.href = "?" + parentfolder
+                }
+            }
+
             (async () => {
 
-                let currentpath = location.search?.substring(1)
+                currentpath = location.search?.substring(1)
 
                 if (currentpath.length > 0) {
                     currentpath += "/"
@@ -47,10 +76,23 @@
                     filelistdiv.appendChild(div)
                 }
 
+                document.getElementById("newfolderbutton").addEventListener("click", newfolderbuttonclick)
+                document.getElementById("newfilebutton").addEventListener("click", newfilebuttonclick)
+                document.getElementById("deletefolderbutton").addEventListener("click", deletefolderbuttonclick)
+                if (currentpath.length < 1) {
+                    document.getElementById("deletefolderbutton").setAttribute("disabled", "disabled")
+                }
+
             })()
         </script>
     </head>
     <body>
+
+        <div id="toolbar">
+            <button id="newfolderbutton">Neuer Ordner</button>
+            <button id="newfilebutton">Neue Datei</button>
+            <button id="deletefolderbutton">Ordner löschen</button>
+        </div>
 
         <div id="currentpath"></div>
         <div id="filelist"></div>

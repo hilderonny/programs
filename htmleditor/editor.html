@@ -2,21 +2,30 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+            html, body { width: 100; height: 100%; padding: 0; margin: 0; }
+            body { display: flex; flex-direction: column; }
+            #content { display: block; flex: 1; font-family: monospace; resize: none; }
+        </style>
         <script type="module">
 
             (async () => {
 
                 let filepath = location.search?.substring(1)
 
-                const contentpre = document.getElementById("content")
+                const contentelement = document.getElementById("content")
 
                 const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
-                contentpre.innerText = filecontent
+                contentelement.textContent = filecontent
 
             })()
         </script>
     </head>
     <body>
-        <pre id="content"></pre>
+        <div id="toolbar">
+            <button id="savebutton">Speichern</button>
+            <button id="deletebutton">Löschen</button>
+        </div>
+        <textarea id="content"></textarea>
     </body>
 </html>
