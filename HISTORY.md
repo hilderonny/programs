@@ -1,5 +1,17 @@
 # Entstehungsgeschichte
 
+## 02.05.2024
+
+Die HTML-Dateien des Blockeditors lassen sich nun vollständig durch den Blockeditor selbst bearbeiten. Die Blockly-relevanten Definitionen sind dabei innrhalb eines HTML-Kommentars am Ende der HTML-Datei selbst enthalten.
+
+## 01.05.2024
+
+Nachdem der HTML Editor in seinen Grundfunktionen zum Speichern und Löschen von Dateien und zum Bearbeiten von Verzeichnisstrukturen fertig war, habe ich angefangen, den Block Editor zu bauen.
+Und zwar nur mit dem HTML Editor. Auf Visual Studio Code habe ich ab diesem Zeitpunkt verzichtet. Das war zwar etwas mühselig, da der Komfort gefehlt hat, hat aber erst mal funktioniert.
+Um ein wenig Farbe reinzubringen, habe ich dann doch den [CodeFlask Editor](https://github.com/kazzkiq/CodeFlask) eingebunden, zumindest für html, js und css.
+
+Der Block Editor sollte zunächst reines HTML-Bearbeiten beherrschen. Dazu habe ich Blöcke erstellt, die HTML-Elemente darstellen und die Grundstruktur des Editors vom Layout her an den HTML-Editor angepasst.
+
 ## 27.04.2024
 
 Die Grundidee bei diesen Programmen besteht darin, dass man die Programme mit sich selbst erstellt und dass man dazu eine visuelle Oberfläche benutzt. Mir hat Blockly bzw. Scratch gefallen.

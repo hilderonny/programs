@@ -1,0 +1,80 @@
+let currentpath
+
+async function newfolderbuttonclick() {
+    const foldername = prompt("Ordnername")
+    if (foldername) {
+        await fetch("/api/filesystem/folder/" + currentpath + foldername, { method: 'POST' })
+        location.reload()
+    }
+}
+
+async function newfilebuttonclick() {
+    const filename = prompt("Dateiname")
+    if (filename) {
+        const fullpath = currentpath + filename
+        await fetch("/api/filesystem/" + fullpath, { method: 'POST' })
+        parent.document.getElementById("editor").src = "editor.html?" + fullpath
+        location.reload()
+    }
+}
+
+async function deletefolderbuttonclick() {
+    const shouldbedeleted = confirm("Soll der Ordner " + currentpath + " gelöscht werden?")
+    if (shouldbedeleted) {
+        await fetch("/api/filesystem/" + currentpath, { method: 'DELETE' })
+        const parentfolder = currentpath.split("/").slice(0, -2).join("/")
+        location.href = "?" + parentfolder
+    }
+}
+
+(async () => {
+
+    currentpath = location.search?.substring(1)
+
+    if (currentpath.length > 0) {
+        currentpath += "/"
+    }
+
+    const currentpathdiv = document.getElementById("currentpath")
+    const filelistdiv = document.getElementById("filelist")
+
+    const pathparts = currentpath.split("/")
+    const pathlinkparts = []
+    const links = []
+    links.push('<a href="?">🏠</a>')
+    for (var i = 0; i < pathparts.length; i++) {
+        var pathpart = pathparts[i]
+        pathlinkparts.push(pathpart)
+        var href = pathlinkparts.join("/")
+        links.push('<a href="?' + href + '">' + pathpart + '</a>')
+    }
+    var alllinks = links.join("/")
+    currentpathdiv.innerHTML = alllinks
+
+    const filelist = await fetch("/api/filesystem/list/" + currentpath).then((response) => response.json())
+    
+    for (var file of filelist) {
+        const link = document.createElement("a")
+        link.classList.add(file.type)
+        const fullpath = currentpath + file.name
+        if (file.type === "folder") {
+            link.innerText = "📁 " + file.name
+            link.setAttribute("href", "?" + fullpath)
+        } else {
+            link.innerText = "📄 " + file.name
+            link.setAttribute("href", "editor.html?" + fullpath)
+            link.setAttribute("target", "editor")
+        }
+        var div = document.createElement("div")
+        div.appendChild(link)
+        filelistdiv.appendChild(div)
+    }
+
+    document.getElementById("newfolderbutton").addEventListener("click", newfolderbuttonclick)
+    document.getElementById("newfilebutton").addEventListener("click", newfilebuttonclick)
+    document.getElementById("deletefolderbutton").addEventListener("click", deletefolderbuttonclick)
+    if (currentpath.length < 1) {
+        document.getElementById("deletefolderbutton").setAttribute("disabled", "disabled")
+    }
+
+})()

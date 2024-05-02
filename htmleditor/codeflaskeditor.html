@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+            html, body { width: 100; height: 100%; padding: 0; margin: 0; }
+            body { display: flex; flex-direction: column; }
+            #content { display: flex; flex: 1; }
+            #edit { flex: 1; position: relative; }
+            #preview { flex: 1; display: none; }
+            #preview.visible { display: block; }
+        </style>
+        <script type="module">
+
+            import CodeFlask from "./codeflask.min.js";
+
+            let filepath
+            let editelement
+            let previewelement
+            let codeflask
+
+            async function savefilebuttonclick() {
+                const formdata = new FormData()
+                const content = codeflask.getCode()
+                formdata.append("data", new Blob([content]));
+                await fetch("/api/filesystem/" + filepath, { method: 'POST', body: formdata, cache: 'no-cache' })
+                alert("Die Datei wurde gespeichert")
+            }
+
+            async function deletefilebuttonclick() {
+                const shouldbedeleted = confirm("Soll die Datei " + filepath + " gelöscht werden?")
+                if (shouldbedeleted) {
+                    await fetch("/api/filesystem/" + filepath, { method: 'DELETE' })
+                    parent.document.getElementById("filelist").contentWindow.location.reload()
+                    location.href = "about:blank"
+                }
+            }
+
+            function previewbuttonclick() {
+                document.getElementById("preview").classList.toggle("visible")
+            }
+
+            function editelementchanged(content) {
+                const blob = new Blob([content], { type: "text/html" })
+                const url = URL.createObjectURL(blob)
+                previewelement.src =url
+            }
+
+            (async () => {
+
+                filepath = location.search?.substring(1)
+
+                const filetype = filepath.substr(filepath.lastIndexOf(".") + 1)
+                codeflask = new CodeFlask("#edit", { language: filetype })
+                codeflask.onUpdate(editelementchanged)
+
+                previewelement = document.getElementById("preview")
+
+                if (filepath) {
+                    const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
+                    codeflask.updateCode(filecontent)
+                }
+
+                document.getElementById("savebutton").addEventListener("click", savefilebuttonclick)
+                document.getElementById("deletebutton").addEventListener("click", deletefilebuttonclick)
+                document.getElementById("previewbutton").addEventListener("click", previewbuttonclick)
+
+            })()
+        </script>
+    </head>
+    <body>
+        <div id="toolbar">
+            <button id="savebutton">Speichern</button>
+            <button id="deletebutton">Löschen</button>
+            <button id="previewbutton">Vorschau</button>
+        </div>
+        <div id="content">
+            <div id="edit"></div>
+            <iframe id="preview"></iframe>
+        </div>
+    </body>
+</html>

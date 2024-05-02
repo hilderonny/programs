@@ -68,7 +68,9 @@
                         link.setAttribute("href", "?" + fullpath)
                     } else {
                         link.innerText = "📄 " + file.name
-                        link.setAttribute("href", "editor.html?" + fullpath)
+                        const filetype = file.name.substr(file.name.lastIndexOf(".") + 1)
+                        const editor = (filetype === "html" || filetype === "js" || filetype === "css") ? "codeflaskeditor.html" : "editor.html"
+                        link.setAttribute("href", editor + "?" + fullpath)
                         link.setAttribute("target", "editor")
                     }
                     var div = document.createElement("div")

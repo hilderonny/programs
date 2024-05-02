@@ -1,0 +1,4 @@
+html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+body { display: flex; }
+#filelist { resize: horizontal; min-width: 312px; }
+#editor { flex: 1; }
