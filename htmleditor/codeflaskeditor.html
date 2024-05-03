@@ -9,6 +9,7 @@
             #edit { flex: 1; position: relative; }
             #preview { flex: 1; display: none; }
             #preview.visible { display: block; }
+            #filepath { display: inline; }
         </style>
         <script type="module">
 
@@ -57,6 +58,7 @@
                 previewelement = document.getElementById("preview")
 
                 if (filepath) {
+                  document.getElementById("filepath").innerText = filepath
                     const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
                     codeflask.updateCode(filecontent)
                 }
@@ -73,6 +75,7 @@
             <button id="savebutton">Speichern</button>
             <button id="deletebutton">Löschen</button>
             <button id="previewbutton">Vorschau</button>
+            <div id="filepath"></div>
         </div>
         <div id="content">
             <div id="edit"></div>

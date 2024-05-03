@@ -20,7 +20,7 @@ function handleworkspacechanged(event) {
 async function savebuttonclick() {
   const state = Blockly.serialization.workspaces.save(workspace)
   state.toolbox = toolbox
-  const filecontent = code + "\n<!--BLOCKDEF" + JSON.stringify(state) + "-->"
+  const filecontent = code + "\n" + blockdefs.commentstart + "BLOCKDEF" + JSON.stringify(state) + blockdefs.commentend
   console.log(filecontent)
   const formdata = new FormData()
   formdata.append("data", new Blob([filecontent]));
@@ -40,12 +40,12 @@ function previewbuttonclick() {
     const filecontent = await fetch("/api/filesystem/" + filepath).then((response) => response.text())
     console.log(filecontent)
     
-    const tempdiv = document.createElement("div")
-    tempdiv.innerHTML = filecontent
-    const blockdeftext = Array.prototype.find.call(tempdiv.childNodes, elem => elem.nodeType == 8 && elem.data.startsWith("BLOCKDEF") )
     let blockdefjson = null
-    if (blockdeftext) {
-      blockdefjson = JSON.parse(blockdeftext.nodeValue.substring(8))
+    const lastline = filecontent.split("\n").at(-1)
+    if (lastline && lastline.indexOf("BLOCKDEF") >= 0) {
+      const blockdeftext = lastline.substring(lastline.indexOf("{"), lastline.lastIndexOf("}") + 1)
+      console.log(blockdeftext)
+      blockdefjson = JSON.parse(blockdeftext)
       toolbox = blockdefjson.toolbox
     }
 
@@ -63,6 +63,8 @@ function previewbuttonclick() {
     
     document.getElementById("savebutton").addEventListener("click", savebuttonclick)
     document.getElementById("previewbutton").addEventListener("click", previewbuttonclick)
+    
+    document.getElementById("filepath").innerText = filepath
     
   }
 

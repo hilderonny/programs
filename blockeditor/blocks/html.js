@@ -18,7 +18,6 @@ const blockdefs = [
     generator: function(block) {
       const headcontent = blockgenerator.statementToCode(block, "head")
       const bodycontent = blockgenerator.statementToCode(block, "body")
-      console.log(bodycontent)
       return `<!DOCTYPE html><html><head>\n<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\n${headcontent}\n</head><body>\n${bodycontent}\n</body></html>`
     }
   },
@@ -227,7 +226,12 @@ for (let blockdef of blockdefs) {
     kind: blockdef.kind,
     type: blockdef.name,
     text: blockdef.text,
+    name: blockdef.title,
+    contents: blockdef.contents,
   })
 }
 
-export { toolbox, blockgenerator }
+const commentstart = "<!--"
+const commentend = "-->"
+
+export { toolbox, blockgenerator, commentstart, commentend }
