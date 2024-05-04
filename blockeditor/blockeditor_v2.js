@@ -119,6 +119,7 @@ async function parseelementdefinition(elementdefinition) {
     var toolboxblock = {
       kind: "category",
       name: elementdefinition.name,
+      colour: elementdefinition.color, 
       contents: []
     }
     for (var subelementdefinition of elementdefinition.elements) {
@@ -127,7 +128,6 @@ async function parseelementdefinition(elementdefinition) {
     }
     return toolboxblock
   }
-  // TODO: Category
 }
 
 async function loadtoolbox(toolboxidentifier) {
@@ -154,7 +154,6 @@ async function parsefile(filecontent) {
 }
 
 function handleworkspacechanged(event) {
-  // TODO: Variable globalisieren
   if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || event.type == Blockly.Events.BLOCK_MOVE) {
     code = blockgenerator.workspaceToCode(workspace)
     var blob = new Blob([code], { type: "text/html" })
