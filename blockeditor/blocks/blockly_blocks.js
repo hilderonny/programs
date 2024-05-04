@@ -14,10 +14,10 @@ export var block = {
   template: [
     "export var ", 1, " = {\n",
     "  message: \"", 4, "\",\n",
-    "  arguments: [\n", 5, "]\n",
-    "  message: \"", 3, "\",\n",
-    "  message: \"", 2, "\",\n",
-    "  elements: [\n", 6, "]\n",
+    "  arguments: [\n", 5, "],\n",
+    "  color: \"", 3, "\",\n",
+    "  type: \"", 2, "\",\n",
+    "  template: [\n", 6, "]\n",
     "}\n",
   ]
 }
@@ -30,6 +30,17 @@ export var block_argument_boolean = {
   type: "step",
   template: [
     "{ type: \"boolean\" },\n",
+  ]
+}
+
+export var block_argument_color = {
+  message: "Color",
+  arguments: [
+  ],
+  color: "#64b5f6",
+  type: "step",
+  template: [
+    "{ type: \"color\" },\n",
   ]
 }
 
@@ -118,7 +129,7 @@ export var block_template_text = {
 export var toolbox = {
   message: "Toolbox type %1 \n commenttype %2 \n elements %3",
   arguments: [
-    { type: "select", elements: [ { label: "Flyout", value: "flyoutToolbox" }, ] },
+    { type: "select", elements: [ { label: "Fly Out", value: "flyoutToolbox" }, { label: "Category", value: "categoryToolbox" }, ] },
     { type: "select", elements: [ { label: "Javascript", value: "javascript" }, { label: "HTML", value: "html" }, ] },
     { type: "statements" },
   ],

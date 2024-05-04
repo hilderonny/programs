@@ -1,17 +1,19 @@
 var blockargumenttypemapping = {
+  "boolean": "field_checkbox",
   "color": "field_colour",
+  "input": "input_value",
   "text": "field_input",
   "select": "field_dropdown",
   "statements": "input_statement"
 }
 
 var commentstartmapping = {
-  "javascript": "/*",
+  "javascript": "//",
   "html": "<!--",
 }
 
 var commentendmapping = {
-  "javascript": "*/",
+  "javascript": "",
   "html": "-->",
 }
 
@@ -113,6 +115,18 @@ async function parseelementdefinition(elementdefinition) {
     }
     return toolboxblock
   }
+  if (type === "category") {
+    var toolboxblock = {
+      kind: "category",
+      name: elementdefinition.name,
+      contents: []
+    }
+    for (var subelementdefinition of elementdefinition.elements) {
+      var subelementtoolboxblock = await parseelementdefinition(subelementdefinition )
+      toolboxblock.contents.push(subelementtoolboxblock)
+    }
+    return toolboxblock
+  }
   // TODO: Category
 }
 
@@ -193,7 +207,7 @@ var filecontent = await fetch("/api/filesystem/" + filepath).then((response) => 
   } else if (blocklycontent && blocklycontent.toolbox) {
     toolboxidentifier = blocklycontent.toolbox
   } else {
-    return
+    toolboxidentifier = prompt("Which toolbox should be used?")
   }
    
   blockgenerator = new Blockly.Generator(toolboxidentifier)
@@ -203,7 +217,14 @@ var filecontent = await fetch("/api/filesystem/" + filepath).then((response) => 
   previewiframe = document.getElementById("preview")
   
   await loadtoolbox(toolboxidentifier, blockgenerator)
-  workspace = Blockly.inject(editordiv, { toolbox: toolbox })
+  var workspaceoptions = {
+    grid: { spacing: 10, length: 1, colour: "#cccccc", snap: true, },
+    scrollbars: true,
+    toolbox: toolbox,
+    trashcan: true,
+    zoom: { controls: true },
+  }
+  workspace = Blockly.inject(editordiv, workspaceoptions)
   if (blocklycontent) {
     Blockly.serialization.workspaces.load(blocklycontent, workspace)
   }
