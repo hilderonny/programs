@@ -1,5 +1,9 @@
 # Entstehungsgeschichte
 
+## 04.05.2024
+
+Die Blockly-Toolbox, mit der man die Toolbox selbst erstellen kann, ist nun mit sich selbst definiert. Das Ziel dabei war, alles von Grund auf nur mit Blockly programmieren und definieren zu können, also auch die Blockly-Konfiguration wie Toolboxen und Blöcke selbst.
+
 ## 02.05.2024
 
 Die HTML-Dateien des Blockeditors lassen sich nun vollständig durch den Blockeditor selbst bearbeiten. Die Blockly-relevanten Definitionen sind dabei innrhalb eines HTML-Kommentars am Ende der HTML-Datei selbst enthalten.
