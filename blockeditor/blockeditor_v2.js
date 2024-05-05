@@ -3,6 +3,7 @@ var blockargumenttypemapping = {
   "color": "field_colour",
   "input": "input_value",
   "text": "field_input",
+  "multilinetext": "field_multilinetext",
   "select": "field_dropdown",
   "statements": "input_statement"
 }
@@ -32,13 +33,14 @@ async function parseblockdefinitionforblockly(blockname, blockdefinition) {
     message0: blockdefinition.message,
     args0: [],
     colour: blockdefinition.color,
+    inputsInline: false,
   }  
   for (var [index, argument] of blockdefinition.arguments.entries()) {
     var argumentname = "arg" + (index + 1)
     var argumenttype = argument.type
     var blocklyargument = {
       name: argumentname,
-      type: blockargumenttypemapping[argumenttype]
+      type: blockargumenttypemapping[argumenttype],
     }
     if (argumenttype === "select") {
       var options = []
@@ -74,13 +76,23 @@ async function extractgeneratorfromblockdefinition(blockdefinition) {
         if (blockdefinition.arguments[element - 1].type === "statements") {
           var statementcode = blockgenerator.statementToCode(block, argumentname)
           resultset.push(statementcode)
+        } else if (blockdefinition.arguments[element - 1].type === "input") {
+          var inputcode = blockgenerator.valueToCode(block, argumentname, 0)
+          resultset.push(inputcode)
         } else {
           var value = block.getFieldValue(argumentname)
           resultset.push(value)
         }
       }
+      if (elementtype === "function") {
+        var value = element(block)
+        resultset.push(value)
+      }
     }
     var generatedcontent = resultset.join("")
+    if (blockdefinition.type === "output") {
+      generatedcontent = [ generatedcontent, 0 ] // https://neil.fraser.name/blockly/custom-blocks/operator-precedence#:~:text=Just%20use%20ORDER_ATOMIC%20as%20the%20order%20on%20every,needless%20parentheses%2C%20but%20is%20guaranteed%20to%20be%20correct.
+    }
     return generatedcontent
   }
   return generatorfunction
