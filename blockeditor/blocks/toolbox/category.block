@@ -1,0 +1,21 @@
+{
+  "type": "category",
+  "message0": "Category name %1 \n colour %2 \n contents %3",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "field_input"
+    },
+    {
+      "name": "arg2",
+      "type": "field_input"
+    },
+    {
+      "name": "arg3",
+      "type": "input_statement"
+    }
+  ],
+  "colour": "#ff9900",
+  "nextStatement": null,
+  "previousStatement": null
+}

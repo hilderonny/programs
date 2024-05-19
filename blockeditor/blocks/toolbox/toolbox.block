@@ -1,0 +1,25 @@
+{
+  "type": "toolbox",
+  "message0": "Toolbox kind %1 \n contents %2",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "field_dropdown",
+      "options": [
+        [
+          "Fly Out",
+          "flyoutToolbox"
+        ],
+        [
+          "Category",
+          "categoryToolbox"
+        ]
+      ]
+    },
+    {
+      "name": "arg2",
+      "type": "input_statement"
+    }
+  ],
+  "colour": "#ff6666"
+}

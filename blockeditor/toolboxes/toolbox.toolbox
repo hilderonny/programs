@@ -1,0 +1,25 @@
+{
+  "kind": "flyoutToolbox",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "toolbox"
+    },
+    {
+      "kind": "label",
+      "text": "Toolbox elements"
+    },
+    {
+      "kind": "block",
+      "type": "block"
+    },
+    {
+      "kind": "block",
+      "type": "label"
+    },
+    {
+      "kind": "block",
+      "type": "category"
+    }
+  ]
+}

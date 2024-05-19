@@ -1,0 +1,13 @@
+{
+  "type": "block",
+  "message0": "Block %1",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "field_input"
+    }
+  ],
+  "colour": "#33ccff",
+  "nextStatement": null,
+  "previousStatement": null
+}

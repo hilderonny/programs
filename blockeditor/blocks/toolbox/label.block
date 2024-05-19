@@ -1,0 +1,13 @@
+{
+  "type": "label",
+  "message0": "Label %1",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "field_input"
+    }
+  ],
+  "colour": "#999999",
+  "nextStatement": null,
+  "previousStatement": null
+}

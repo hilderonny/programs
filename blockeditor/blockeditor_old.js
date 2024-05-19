@@ -11,11 +11,13 @@ var blockargumenttypemapping = {
 var commentstartmapping = {
   "javascript": "//",
   "html": "<!--",
+  "css": "/*",
 }
 
 var commentendmapping = {
   "javascript": "",
   "html": "-->",
+  "css": "*/",
 }
 
 var toolboxidentifier
@@ -33,7 +35,7 @@ async function parseblockdefinitionforblockly(blockname, blockdefinition) {
     message0: blockdefinition.message,
     args0: [],
     colour: blockdefinition.color,
-    inputsInline: false,
+    inputsInline: blockdefinition.inline,
   }  
   for (var [index, argument] of blockdefinition.arguments.entries()) {
     var argumentname = "arg" + (index + 1)
@@ -71,6 +73,7 @@ async function extractgeneratorfromblockdefinition(blockdefinition) {
       if (elementtype === "string") {
         resultset.push(element)
       }
+      // BIS HIER BIN ICH GEKOMMEN
       if (elementtype === "number") {
         var argumentname = "arg" + element
         if (blockdefinition.arguments[element - 1].type === "statements") {
