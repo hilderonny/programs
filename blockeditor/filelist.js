@@ -13,7 +13,7 @@ async function newfilebuttonclick() {
     if (filename) {
         const fullpath = currentpath + filename
         await fetch("/api/filesystem/" + fullpath, { method: 'POST' })
-        parent.document.getElementById("editor").src = "editor.html?" + fullpath
+        parent.document.getElementById("editor").src = "editor.v03.html?" + fullpath
         location.reload()
     }
 }
@@ -62,7 +62,7 @@ async function deletefolderbuttonclick() {
             link.setAttribute("href", "?" + fullpath)
         } else {
             link.innerText = "📄 " + file.name
-            link.setAttribute("href", "editor.html?" + fullpath)
+            link.setAttribute("href", "editor.v03.html?" + fullpath)
             link.setAttribute("target", "editor")
         }
         var div = document.createElement("div")
