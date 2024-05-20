@@ -1,0 +1,10 @@
+{
+  "type": "rootarray",
+  "message0": "Array [ \n %1 ]",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "input_statement"
+    }
+  ]
+}

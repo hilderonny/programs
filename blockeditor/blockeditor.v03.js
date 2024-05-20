@@ -6,6 +6,7 @@ async function loadblock(toolboxname, blockname, blockgenerator) {
   // Load Block into Blockly
   Blockly.defineBlocksWithJsonArray([ blockjson ])
   // Load block generator for block
+  return
   var generatorurl = "./generators/" + toolboxname + "/" + blockname + ".js"
   var generator = await import(generatorurl)
   blockgenerator.forBlock[blockname] = generator.creategenerator(blockgenerator)
@@ -59,12 +60,6 @@ async function init() {
 
   // Init code generation
   var blockgenerator = new Blockly.Generator("")
-  function blockgeneratorscrub(block, code) {
-    var nextBlock = block.nextConnection && block.nextConnection.targetBlock()
-    var nextCode = blockgenerator.blockToCode(nextBlock)
-    return code + nextCode
-  }
-//  blockgenerator.scrub_ = blockgeneratorscrub
   
   // Determine toolbox to load depending on file extension
   var filepath = location.search.substring(1)
@@ -105,6 +100,7 @@ async function init() {
   
   // Handle workspace changes
   function handleworkspacechanged(event) {
+    return
     if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || event.type == Blockly.Events.BLOCK_MOVE) {
       var state = Blockly.serialization.workspaces.save(workspace)
       var code = blockgenerator.workspaceToCode(workspace)

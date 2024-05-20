@@ -1,0 +1,16 @@
+{
+  "type": "objectarray",
+  "message0": "%1 : [ \n %2 ]",
+  "args0": [
+    {
+      "name": "arg1",
+      "type": "field_input"
+    },
+    {
+      "name": "arg2",
+      "type": "input_statement"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null
+}

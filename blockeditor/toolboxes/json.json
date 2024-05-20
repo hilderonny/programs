@@ -2,24 +2,68 @@
   "kind": "flyoutToolbox",
   "contents": [
     {
-      "kind": "block",
-      "type": "object"
+      "kind": "label",
+      "text": "Objects"
     },
     {
       "kind": "block",
-      "type": "array"
+      "type": "rootobject"
     },
     {
       "kind": "block",
-      "type": "key"
+      "type": "arrayobject"
     },
     {
       "kind": "block",
-      "type": "string"
+      "type": "objectobject"
+    },
+    {
+      "kind": "label",
+      "text": "Arrays"
     },
     {
       "kind": "block",
-      "type": "value"
+      "type": "rootarray"
+    },
+    {
+      "kind": "block",
+      "type": "arrayarray"
+    },
+    {
+      "kind": "block",
+      "type": "objectarray"
+    },
+    {
+      "kind": "label",
+      "text": "Strings"
+    },
+    {
+      "kind": "block",
+      "type": "rootstring"
+    },
+    {
+      "kind": "block",
+      "type": "arraystring"
+    },
+    {
+      "kind": "block",
+      "type": "objectstring"
+    },
+    {
+      "kind": "label",
+      "text": "Values"
+    },
+    {
+      "kind": "block",
+      "type": "rootvalue"
+    },
+    {
+      "kind": "block",
+      "type": "arrayvalue"
+    },
+    {
+      "kind": "block",
+      "type": "objectvalue"
     }
   ]
 }

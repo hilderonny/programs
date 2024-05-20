@@ -1,0 +1,38 @@
+{
+  "key1": true,
+  "key2": null,
+  "key3": 123,
+  "key4": 5.67,
+  "key5": "text",
+  "key6": [
+    null,
+    123,
+    4.56,
+    "text",
+    [
+    ],
+    {
+      "key1": true,
+      "key2": null,
+      "key3": 123,
+      "key4": 5.67,
+      "key5": "text",
+      "key6": [
+      ],
+      "key7": {
+      }
+    }
+  ],
+  "key7": {
+    "key1": true,
+    "key2": null,
+    "key3": 123,
+    "key4": 5.67,
+    "key5": "text",
+    "key6": [
+    ],
+    "key7": {
+    }
+  }
+
+}
