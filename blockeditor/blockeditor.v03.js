@@ -1,31 +1,26 @@
-async function loadblock(toolboxname, blockname, blockgenerator) {
+async function loadblock(toolboxname, blockname) {
 
   var blockdefinitionurl = "./blocks/" + toolboxname + "/" + blockname + ".json"
   var blockresponse = await fetch(blockdefinitionurl)
   var blockjson = await blockresponse.json()
   // Load Block into Blockly
   Blockly.defineBlocksWithJsonArray([ blockjson ])
-  // Load block generator for block
-  return
-  var generatorurl = "./generators/" + toolboxname + "/" + blockname + ".js"
-  var generator = await import(generatorurl)
-  blockgenerator.forBlock[blockname] = generator.creategenerator(blockgenerator)
   
 }
 
-async function loadblocksforcontent(toolboxname, contentjson, blockgenerator) {
+async function loadblocksforcontent(toolboxname, contentjson) {
 
   for (var toolboxblockdefinition of contentjson) {
     if (toolboxblockdefinition.kind === "block") {
-      await loadblock(toolboxname, toolboxblockdefinition.type, blockgenerator)
+      await loadblock(toolboxname, toolboxblockdefinition.type)
     }
   }
   
 }
 
-async function loadblocksfortoolbox(toolboxname, toolboxjson, blockgenerator) {
+async function loadblocksfortoolbox(toolboxname, toolboxjson) {
 
-  await loadblocksforcontent(toolboxname, toolboxjson.contents, blockgenerator)
+  await loadblocksforcontent(toolboxname, toolboxjson.contents)
   
 }
 
@@ -34,6 +29,14 @@ async function loadfileparser(fileextension) {
   var parserurl = "./parsers/" + fileextension + ".js"
   var parser = await import(parserurl)
   return parser
+  
+}
+
+async function loadcodegenerator(fileextension) {
+
+  var generatorurl = "./generators/" + fileextension + ".js"
+  var generator = await import(generatorurl)
+  return generator
   
 }
 
@@ -57,9 +60,6 @@ async function previewbuttonclick() {
 }
 
 async function init() {
-
-  // Init code generation
-  var blockgenerator = new Blockly.Generator("")
   
   // Determine toolbox to load depending on file extension
   var filepath = location.search.substring(1)
@@ -73,7 +73,7 @@ async function init() {
   var toolboxjson = await toolboxresponse.json()
   
   // Load all blocks for the toolbox
-  await loadblocksfortoolbox(fileextension, toolboxjson, blockgenerator)
+  await loadblocksfortoolbox(fileextension, toolboxjson)
   
   // Prepare workspace
   var workspaceoptions = {
@@ -98,20 +98,24 @@ async function init() {
     Blockly.serialization.workspaces.load(parsedfilecontent, workspace)
   }
   
+  // Load block generator for extension
+  var codegenerator = await loadcodegenerator(fileextension)
+  
   // Handle workspace changes
   function handleworkspacechanged(event) {
-    return
-    if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || event.type == Blockly.Events.BLOCK_MOVE) {
+    if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || (event.type == Blockly.Events.BLOCK_MOVE && event.reason.includes("snap"))) {
       var state = Blockly.serialization.workspaces.save(workspace)
-      var code = blockgenerator.workspaceToCode(workspace)
+      var code = codegenerator.generate(state)
       document.getElementById("preview").innerText = code
+      console.log(code)
     }
   }
   workspace.addChangeListener(handleworkspacechanged)
   
   // Button handling
   async function savebuttonclick() {
-    var code = blockgenerator.workspaceToCode(workspace)
+    var state = Blockly.serialization.workspaces.save(workspace)
+    var code = codegenerator.generate(state)
     var formdata = new FormData()
     formdata.append("data", new Blob([code]));
     await fetch("/api/filesystem/" + filepath, { method: 'POST', body: formdata, cache: 'no-cache' })
