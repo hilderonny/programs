@@ -1,7 +1,7 @@
 async function loadblock(toolboxname, blockname) {
 
   var blockdefinitionurl = "./blocks/" + toolboxname + "/" + blockname + ".json"
-  var blockresponse = await fetch(blockdefinitionurl)
+  var blockresponse = await fetch(blockdefinitionurl, { cache: "force-cache" })
   var blockjson = await blockresponse.json()
   // Load Block into Blockly
   Blockly.defineBlocksWithJsonArray([ blockjson ])
@@ -13,6 +13,8 @@ async function loadblocksforcontent(toolboxname, contentjson) {
   for (var toolboxblockdefinition of contentjson) {
     if (toolboxblockdefinition.kind === "block") {
       await loadblock(toolboxname, toolboxblockdefinition.type)
+    } else if (toolboxblockdefinition.kind === "category") {
+      await loadblocksforcontent(toolboxname, toolboxblockdefinition.contents)
     }
   }
   

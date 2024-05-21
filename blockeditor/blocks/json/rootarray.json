@@ -4,7 +4,9 @@
   "args0": [
     {
       "name": "arg1",
-      "type": "input_statement"
+      "type": "input_statement",
+      "check": "arrayelement"
     }
-  ]
+  ],
+  "colour": 220
 }

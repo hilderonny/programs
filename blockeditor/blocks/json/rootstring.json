@@ -6,5 +6,6 @@
       "name": "arg1",
       "type": "field_input"
     }
-  ]
+  ],
+  "colour": 60
 }

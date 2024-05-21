@@ -1,69 +1,81 @@
 {
-  "kind": "flyoutToolbox",
+  "kind": "categoryToolbox",
   "contents": [
     {
-      "kind": "label",
-      "text": "Objects"
+      "kind": "category",
+      "name": "Objects",
+      "colour": 350,
+      "contents": [
+        {
+          "kind": "block",
+          "type": "rootobject"
+        },
+        {
+          "kind": "block",
+          "type": "arrayobject"
+        },
+        {
+          "kind": "block",
+          "type": "objectobject"
+        }
+      ]
     },
     {
-      "kind": "block",
-      "type": "rootobject"
+      "kind": "category",
+      "name": "Arrays",
+      "colour": 220,
+      "contents": [
+        {
+          "kind": "block",
+          "type": "rootarray"
+        },
+        {
+          "kind": "block",
+          "type": "arrayarray"
+        },
+        {
+          "kind": "block",
+          "type": "objectarray"
+        }
+      ]
     },
     {
-      "kind": "block",
-      "type": "arrayobject"
+      "kind": "category",
+      "name": "Strings",
+      "colour": 60,
+      "contents": [
+        {
+          "kind": "block",
+          "type": "rootstring"
+        },
+        {
+          "kind": "block",
+          "type": "arraystring"
+        },
+        {
+          "kind": "block",
+          "type": "objectstring"
+        }
+      ]
     },
     {
-      "kind": "block",
-      "type": "objectobject"
-    },
-    {
-      "kind": "label",
-      "text": "Arrays"
-    },
-    {
-      "kind": "block",
-      "type": "rootarray"
-    },
-    {
-      "kind": "block",
-      "type": "arrayarray"
-    },
-    {
-      "kind": "block",
-      "type": "objectarray"
-    },
-    {
-      "kind": "label",
-      "text": "Strings"
-    },
-    {
-      "kind": "block",
-      "type": "rootstring"
-    },
-    {
-      "kind": "block",
-      "type": "arraystring"
-    },
-    {
-      "kind": "block",
-      "type": "objectstring"
-    },
-    {
-      "kind": "label",
-      "text": "Values"
-    },
-    {
-      "kind": "block",
-      "type": "rootvalue"
-    },
-    {
-      "kind": "block",
-      "type": "arrayvalue"
-    },
-    {
-      "kind": "block",
-      "type": "objectvalue"
+      "kind": "category",
+      "name": "Values",
+      "colour": 120,
+      "contents": [
+        {
+          "kind": "block",
+          "type": "rootvalue"
+        },
+        {
+          "kind": "block",
+          "type": "arrayvalue"
+        },
+        {
+          "kind": "block",
+          "type": "objectvalue"
+        }
+      ]
     }
   ]
 }

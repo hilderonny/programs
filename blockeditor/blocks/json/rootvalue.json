@@ -4,7 +4,9 @@
   "args0": [
     {
       "name": "arg1",
-      "type": "field_input"
+      "type": "field_input",
+      "text": "null"
     }
-  ]
+  ],
+  "colour": 120
 }

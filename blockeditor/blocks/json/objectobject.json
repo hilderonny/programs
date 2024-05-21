@@ -4,13 +4,16 @@
   "args0": [
     {
       "name": "arg1",
-      "type": "field_input"
+      "type": "field_input",
+      "text": "key"
     },
     {
       "name": "arg2",
-      "type": "input_statement"
+      "type": "input_statement",
+      "check": "objectelement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null
+  "previousStatement": "objectelement",
+  "nextStatement": "objectelement",
+  "colour": 350
 }

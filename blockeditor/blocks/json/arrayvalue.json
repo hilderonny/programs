@@ -4,9 +4,11 @@
   "args0": [
     {
       "name": "arg1",
-      "type": "field_input"
+      "type": "field_input",
+      "text": "null"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null
+  "previousStatement": "arrayelement",
+  "nextStatement": "arrayelement",
+  "colour": 120
 }
