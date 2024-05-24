@@ -14,5 +14,9 @@
     }
   ],
   "previousStatement": "statement",
-  "nextStatement": [ "statement", "else", "elseif" ]
+  "nextStatement": [
+    "statement",
+    "else",
+    "elseif"
+  ]
 }

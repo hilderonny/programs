@@ -36,6 +36,10 @@ function parseacornfunctiondeclaration(acornpart) {
       currentblockparent = parameterblock.inputs.arg2
     }
   }
+  var contentparts = acornpart.body.body
+  for (var contentpart of contentparts) {
+    var contentpartblock = parseacornpart(contentpart)
+  }
   return block
 }
 

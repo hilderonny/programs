@@ -1,0 +1,50 @@
+{
+  "type": "variable_declaration_from_combination",
+  "message0": "var %1 = %2 %3 %4",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "arg1",
+      "text": "variablename"
+    },
+    {
+      "type": "input_value",
+      "name": "arg2",
+      "check": "value"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "arg3",
+      "options": [
+        [
+          "+",
+          "+"
+        ],
+        [
+          "-",
+          "-"
+        ],
+        [
+          "*",
+          "*"
+        ],
+        [
+          "/",
+          "/"
+        ],
+        [
+          "%",
+          "%"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "arg4",
+      "check": "value"
+    }
+  ],
+  "inputsInline": true,
+  "nextStatement": "statement",
+  "previousStatement": "statement"
+}

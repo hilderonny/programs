@@ -66,7 +66,8 @@ function generatestring(block) {
   } else if (block.type === "objectstring") {
     resultstring = block.fields.arg2
   }
-  return resultstring
+  var unescapedstring = resultstring.replace("\\n", "\n")
+  return unescapedstring
 }
 
 function generatevalue(block) {

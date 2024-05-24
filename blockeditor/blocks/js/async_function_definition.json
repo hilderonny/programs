@@ -1,6 +1,6 @@
 {
   "type": "async_function_definition",
-  "message0": "async function %1 ( %2 ) { %3  %4 } %5",
+  "message0": "async function %1 ( %2 ) { \n %3 }",
   "args0": [
     {
       "type": "field_input",
@@ -13,15 +13,9 @@
       "check": "functiondefinitionparameter"
     },
     {
-      "type": "input_end_row"
-    },
-    {
       "type": "input_statement",
-      "name": "arg4",
+      "name": "arg3",
       "check": "statement"
-    },
-    {
-      "type": "input_end_row"
     }
   ],
   "inputsInline": true,

@@ -66,7 +66,8 @@ function parseobjectstring(key, stringjson) {
   block.type = "objectstring"
   block.fields = {}
   block.fields.arg1 = key
-  block.fields.arg2 = stringjson
+  var escapedstring = stringjson.replace("\n", "\\n")
+  block.fields.arg2 = escapedstring
   return block
 }
 
@@ -180,7 +181,8 @@ function parsearraystring(stringjson) {
   var block = createemptyblock()
   block.type = "arraystring"
   block.fields = {}
-  block.fields.arg1 = stringjson
+  var escapedstring = stringjson.replace("\n", "\\n")
+  block.fields.arg1 = escapedstring
   return block
 }
 
@@ -243,7 +245,8 @@ function parserootstring(stringjson) {
   block.x = 20
   block.y = 20
   block.fields = {}
-  block.fields.arg1 = stringjson
+  var escapedstring = stringjson.replace("\n", "\\n")
+  block.fields.arg1 = escapedstring
   return block
 }
 

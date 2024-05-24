@@ -8,6 +8,9 @@
       "check": "statement"
     }
   ],
-  "previousStatement": [ "if", "elseif" ],
+  "previousStatement": [
+    "if",
+    "elseif"
+  ],
   "nextStatement": "statement"
 }

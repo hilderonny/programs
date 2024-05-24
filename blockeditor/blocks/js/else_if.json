@@ -13,6 +13,13 @@
       "check": "statement"
     }
   ],
-  "previousStatement": [ "if", "elseif" ],
-  "nextStatement": [ "statement", "else", "elseif" ]
+  "previousStatement": [
+    "if",
+    "elseif"
+  ],
+  "nextStatement": [
+    "statement",
+    "else",
+    "elseif"
+  ]
 }
