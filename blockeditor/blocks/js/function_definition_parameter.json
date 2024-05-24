@@ -1,0 +1,17 @@
+{
+  "type": "function_definition_parameter",
+  "message0": "%1 %2",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "arg1",
+      "text": "parameter"
+    },
+    {
+      "type": "input_value",
+      "name": "arg2",
+      "check": "functiondefinitionparameter"
+    }
+  ],
+  "output": "functiondefinitionparameter"
+}

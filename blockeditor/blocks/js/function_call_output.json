@@ -1,0 +1,18 @@
+{
+  "type": "function_call_output",
+  "message0": "call %1 ( %2 )",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "arg1",
+      "text": "functionname"
+    },
+    {
+      "type": "input_value",
+      "name": "arg2",
+      "check": "functioncallparameter"
+    }
+  ],
+  "output": "value"
+
+}

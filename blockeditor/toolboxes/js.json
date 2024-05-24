@@ -1,0 +1,105 @@
+{
+  "kind": "flyoutToolbox",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "if"
+    },
+    {
+      "kind": "block",
+      "type": "else_if"
+    },
+    {
+      "kind": "block",
+      "type": "else"
+    },
+    {
+      "kind": "block",
+      "type": "for_of"
+    },
+    {
+      "kind": "block",
+      "type": "async_function_definition"
+    },
+    {
+      "kind": "block",
+      "type": "function_definition"
+    },
+    {
+      "kind": "block",
+      "type": "variable_declaration"
+    },
+    {
+      "kind": "block",
+      "type": "variable_assignment"
+    },
+    {
+      "kind": "block",
+      "type": "value_object"
+    },
+    {
+      "kind": "block",
+      "type": "value_array"
+    },
+    {
+      "kind": "block",
+      "type": "value_string"
+    },
+    {
+      "kind": "block",
+      "type": "value_value"
+    },
+    {
+      "kind": "block",
+      "type": "export_module"
+    },
+    {
+      "kind": "block",
+      "type": "function_call_output"
+    },
+    {
+      "kind": "block",
+      "type": "function_call_statement"
+    },
+    {
+      "kind": "block",
+      "type": "return_value"
+    },
+    {
+      "kind": "block",
+      "type": "attribute"
+    },
+    {
+      "kind": "block",
+      "type": "negate"
+    },
+    {
+      "kind": "block",
+      "type": "await_function_call_output"
+    },
+    {
+      "kind": "block",
+      "type": "await_function_call_statement"
+    },
+    {
+      "kind": "block",
+      "type": "function_definition_parameter"
+    },
+    {
+      "kind": "block",
+      "type": "function_call_parameter_value"
+    },
+    {
+      "kind": "block",
+      "type": "function_call_parameter_string"
+    },
+    {
+      "kind": "block",
+      "type": "compare"
+    },
+    {
+      "kind": "block",
+      "type": "combine"
+    }
+  ]
+}

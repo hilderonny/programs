@@ -1,0 +1,12 @@
+{
+  "type": "negate",
+  "message0": "not %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "arg1",
+      "check": "value"
+    }
+  ],
+  "output": "value"
+}

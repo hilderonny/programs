@@ -1,0 +1,18 @@
+{
+  "type": "else_if",
+  "message0": "else if ( %1 ) { \n %2 }",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "arg1",
+      "check": "condition"
+    },
+    {
+      "type": "input_statement",
+      "name": "arg2",
+      "check": "statement"
+    }
+  ],
+  "previousStatement": [ "if", "elseif" ],
+  "nextStatement": [ "statement", "else", "elseif" ]
+}

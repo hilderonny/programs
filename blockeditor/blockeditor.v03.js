@@ -105,7 +105,7 @@ async function init() {
   
   // Handle workspace changes
   function handleworkspacechanged(event) {
-    if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || (event.type == Blockly.Events.BLOCK_MOVE && event.reason.includes("snap"))) {
+    if (event.type == Blockly.Events.BLOCK_CHANGE || event.type == Blockly.Events.BLOCK_CREATE || event.type == Blockly.Events.BLOCK_DELETE || (event.type == Blockly.Events.BLOCK_MOVE && event.reason && (event.reason.includes("snap") || event.reason.includes("connect")))) {
       var state = Blockly.serialization.workspaces.save(workspace)
       var code = codegenerator.generate(state)
       document.getElementById("preview").innerText = code

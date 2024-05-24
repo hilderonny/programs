@@ -1,0 +1,48 @@
+{
+  "type": "compare",
+  "message0": "%1 %2 %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "arg1",
+      "check": "value"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "arg2",
+      "options": [
+        [
+          "===",
+          "==="
+        ],
+        [
+          "!==",
+          "!=="
+        ],
+        [
+          "<",
+          "<"
+        ],
+        [
+          "<=",
+          "<="
+        ],
+        [
+          ">",
+          ">"
+        ],
+        [
+          ">=",
+          ">="
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "arg3",
+      "check": "value"
+    }
+  ],
+  "inputsInline": true,
+  "output": "condition"
+}

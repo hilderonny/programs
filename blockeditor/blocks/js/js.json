@@ -1,0 +1,527 @@
+[
+  {
+    "type": "compare",
+    "message0": "%1 %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "arg1"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "arg2",
+        "options": [
+          [
+            "!==",
+            "notequal"
+          ],
+          [
+            "<",
+            "lessthan"
+          ],
+          [
+            ">",
+            "greaterthan"
+          ],
+          [
+            "<=",
+            "lessthanorequal"
+          ],
+          [
+            ">=",
+            "greaterthanorequal"
+          ],
+          [
+            "===",
+            "equal"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "arg3"
+      }
+    ],
+    "output": null
+  },
+  {
+    "type": "combine",
+    "message0": "%1 %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "arg1"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "arg2",
+        "options": [
+          [
+            "+",
+            "add"
+          ],
+          [
+            "-",
+            "subtract"
+          ],
+          [
+            "*",
+            "multiply"
+          ],
+          [
+            "/",
+            "divide"
+          ],
+          [
+            "%",
+            "modulo"
+          ]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "arg3"
+      }
+    ],
+    "output": null
+  },
+  {
+    "type": "await_function_call_output",
+    "message0": "await %1 ( %2 ) %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "arg1",
+        "text": "variable.function"
+      },
+      {
+        "type": "input_value",
+        "name": "arg2"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "output": null,
+    "colour": 315,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "await_function_call_statement",
+    "message0": "await %1 ( %2 ) %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "variable.function"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 315,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_parameter",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "parameter"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_declaration",
+    "message0": "var %1 = %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "variablename"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "value_string",
+    "message0": "\" %1 \"",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "string"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "value_value",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "string"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_assignment",
+    "message0": "%1 = %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "variablename"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_definition",
+    "message0": "function %1 ( %2 ) { %3 %4 } %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "functionname"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_definition_async",
+    "message0": "async function %1 ( %2 ) { %3 %4 } %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "functionname"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "value_object",
+    "message0": "empty object",
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "value_array",
+    "message0": "empty array",
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_call_statement",
+    "message0": "%1 ( %2 ) %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "fetch"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 315,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_call_output",
+    "message0": "%1 ( %2 ) %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "fetch"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "output": null,
+    "colour": 315,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_parameter_string",
+    "message0": "\" %1 \" %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "parameter"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "negate_",
+    "message0": "not %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "if_",
+    "message0": "if ( %1 ) { %2 %3 } %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "if_elseif",
+    "message0": "else if ( %1 ) { %2 %3 } %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "if_else",
+    "message0": "else { %1 %2 } %3",
+    "args0": [
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "attribute_",
+    "message0": "[ %1 ] %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "output": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "for_of",
+    "message0": "for (var %1 of %2 ) { %3 %4 } %5",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "variablename"
+      },
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "listname"
+      },
+      {
+        "type": "input_end_row"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "input_end_row"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "export_module",
+    "message0": "export %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "variablename"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "return_value",
+    "message0": "return %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+]

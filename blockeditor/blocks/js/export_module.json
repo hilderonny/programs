@@ -1,0 +1,13 @@
+{
+  "type": "export_module",
+  "message0": "export %1",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "arg1",
+      "text": "variablename"
+    }
+  ],
+  "previousStatement": "statement",
+  "nextStatement": "statement"
+}

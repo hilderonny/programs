@@ -1,0 +1,17 @@
+{
+  "type": "await_function_call_statement",
+  "message0": "await %1 ( %2 )",
+  "args0": [
+    {
+      "type": "field_input",
+      "name": "arg1",
+      "text": "functionname"
+    },
+    {
+      "type": "input_value",
+      "name": "arg2"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null
+}

@@ -1,0 +1,12 @@
+{
+  "type": "return_value",
+  "message0": "return %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "arg1",
+      "check": "value"
+    }
+  ],
+  "previousStatement": "statement"
+}
